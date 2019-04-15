@@ -3,7 +3,6 @@ Var S : String;
     C : Char;
     F : File of char;
 begin
-  xy
   Assign (F,'prima.pas');
   Reset (F);
   C:='A';
