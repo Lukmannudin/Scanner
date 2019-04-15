@@ -1,7 +1,8 @@
-program prima;
+integer program prima;
 Var S : String;
     C : Char;
     F : File of char;
+  
 begin
   Assign (F,'prima.pas');
   Reset (F);

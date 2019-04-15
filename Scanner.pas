@@ -1,23 +1,20 @@
-
 // Program ini dibuat di visual studio code
 // Di compile menggunakan Free Pascal (FPC)
 // Jika program ini di compile menggunakan dev-pas maka akan ada error di beberapa line code
 program Scanner;
-Uses sysutils,Crt;
+Uses sysutils;
 type
     rec_token = record
         token: char;
         category: string;
     end;    
 var 
-    S : String;
     ch : char;
     theFile : File of char;
     i : integer;
     FP:Integer;
     sizeOfChar:integer;
     dataToken: array of Char;
-    extraIncrement : integer;
     totalToken:integer;
     tokens: array of rec_token;
 
@@ -25,7 +22,7 @@ var
 
     function countChar():integer;
     var
-    z:Integer;
+        z:integer;
     begin
         Assign (theFile,'prima.pas');
         Reset (theFile); 
@@ -58,7 +55,7 @@ var
 
 begin
     intcon:= 0;realcon:=0;charcon:=0;stringt:=0;notsy:=0;plus:=0;minus:=0;times:=0;idiv:=0;rdiv:=0;imod:=0;
-    andsy:=0;orsy:=0;egl:=0;neg:=0;gtr:=0;geg:=0;lss:=0;leg:=0;lparent:=0;rparent:=0;lbrack:=0;comma:=0;
+    andsy:=0;orsy:=0;egl:=0;neg:=0;gtr:=0;geg:=0;lss:=0;leg:=0;lparent:=0;rparent:=0;lbrack:=0;comma:=0;rbrack:=0;
     semicolon:=0;period:=0;colon:=0;becomes:=0;constsy:=0;typesy:=0;varsy:=0;functionsy:=0;proceduresy:=0;
     arraysy:=0;recordsy:=0;programsy:=0;ident:=0;beginsy:=0;ifsy:=0;casesy:=0;repeatsy:=0;whilesy:=0;
     forsy:=0;endsy:=0;elsesy:=0;untilsy:=0;ofsy:=0;dosy:=0;tosy:=0;downtosy:=0;thensy:=0;typeint:=0;
@@ -68,19 +65,21 @@ begin
     charLoad(dataToken);
     i:=0;
     // while i<>countChar do
+    write(dataToken[0],dataToken[1],dataToken[2],dataToken[3],dataToken[4],dataToken[5],dataToken[6]);
+    writeln('|          TOKEN          |');
     for i:=0 to countChar do
      begin
         //integer check
-        if  (UpperCase(dataToken[i+0])='I') and 
+        if  (UpperCase(dataToken[i])='I') and 
             (UpperCase(dataToken[i+1])='N') and 
             (UpperCase(dataToken[i+2])='T') and 
             (UpperCase(dataToken[i+3])='E') and 
             (UpperCase(dataToken[i+4])='G') and
-            (UpperCase(dataToken[i+5])='E') agitnd  
+            (UpperCase(dataToken[i+5])='E') and
             (UpperCase(dataToken[i+6])='R') then
             begin
-                intcon+=1;
-                write('tipe data integer');
+                intcon +=1;
+                writeln('tipe data integer');
             end
         else
         if  (UpperCase(dataToken[i+0])='R') and 
@@ -270,9 +269,9 @@ begin
                 writeln('keyword const');
             end
         else
-        if  (UpperCase(dataToken[i+0])='v') and 
-            (UpperCase(dataToken[i+1])='a') and 
-            (UpperCase(dataToken[i+2])='r') then
+        if  (UpperCase(dataToken[i])='V') and 
+            (UpperCase(dataToken[i+1])='A') and 
+            (UpperCase(dataToken[i+2])='R') then
             begin
                 varsy +=1;
                 writeln('keyword var');
@@ -326,17 +325,17 @@ begin
                 writeln('keyword record');
             end
         else  
-        if  (UpperCase(dataToken[i+0])='P') and 
+        if  (UpperCase(dataToken[i])='P') and 
             (UpperCase(dataToken[i+1])='R') and 
             (UpperCase(dataToken[i+2])='O') and 
             (UpperCase(dataToken[i+3])='G') and 
             (UpperCase(dataToken[i+4])='R') and
             (UpperCase(dataToken[i+5])='A') and 
-            (UpperCase(dataToken[i+5])='M') then
+            (UpperCase(dataToken[i+6])='M') then
             begin
                 programsy +=1;
                 writeln('keyword program');
-            end
+            end  
         else   
         if  (UpperCase(dataToken[i+0])='B') and 
             (UpperCase(dataToken[i+1])='E') and 
@@ -456,10 +455,60 @@ begin
         else 
      
     end;//endfor
-    
+    writeln();
+    writeln();
     totalToken := intcon + realcon + charcon + stringt + notsy + plus + minus + times + idiv + rdiv + imod + andsy + orsy + egl + neg + gtr + geg + lss + leg + lparent + rparent + lbrack + rbrack + comma + semicolon + period + colon + becomes + constsy + typesy + varsy + functionsy + proceduresy + arraysy + recordsy + programsy + ident + beginsy + ifsy + casesy + repeatsy + whilesy + forsy + endsy + elsesy + untilsy + ofsy + dosy + tosy + downtosy + thensy + typeint + typechar + typechar;
 
-    // writeln('Jumlah Token ',totalToken);
+    writeln('intcon :',intcon);
+    writeln('realcon :',realcon);
+    writeln('charcon :',charcon);
+    writeln('stringt :',stringt);
+    writeln('notsy:',notsy);
+    writeln('plus :',plus);
+    writeln('minus :',minus);
+    writeln('times :',times);
+    writeln('idiv :',idiv);
+    writeln('rdiv :',rdiv);
+    writeln('imod :',imod);
+    writeln('andsy :',andsy);
+    writeln('orsy :',orsy);
+    writeln('egl :',egl);
+    writeln('neg :',neg);
+    writeln('gtr :',gtr);
+    writeln('geg :',geg);
+    writeln('lss :',lss);
+    writeln('leg :',leg);
+    writeln('lparent :',lparent);
+    writeln('lbrack :',lbrack);
+    writeln('rbrack :',rbrack);
+    writeln('comma :',comma);
+    writeln('semicolon :',semicolon);
+    writeln('colon :',colon);
+    writeln('becomes :',becomes);
+    writeln('constsy :',constsy);
+    writeln('typesy :',typesy);
+    writeln('varsy :',varsy);
+    writeln('functionsy :',functionsy);
+    writeln('proceduresy :',proceduresy);
+    writeln('arraysy :',arraysy);
+    writeln('recordsy :',recordsy);
+    writeln('programsy :',programsy);
+    writeln('identifier :',ident);
+    writeln('beginsy :',beginsy);
+    writeln('ifsy :',ifsy);
+    writeln('casesy :',casesy);
+    writeln('whilesy :',whilesy);
+    writeln('forsy :',forsy);
+    writeln('endsy :',endsy);
+    writeln('elsesy :',elsesy);
+    writeln('untilsy :',untilsy);
+    writeln('ofsy :',ofsy);
+    writeln('dosy :',dosy);
+    writeln('tosy :',tosy);
+    writeln('downtosy :',downtosy);
+    writeln('typeint :',typeint);
+    writeln('typechar :',typechar);
+    writeln('typereal :',typereal);
  Writeln;
 
 end.
