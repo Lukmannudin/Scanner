@@ -63,13 +63,19 @@ begin
     
     SetLength(dataToken,countChar());
     charLoad(dataToken);
-    i:=0;
-    // while i<>countChar do
-    write(dataToken[0],dataToken[1],dataToken[2],dataToken[3],dataToken[4],dataToken[5],dataToken[6]);
-    writeln('|          TOKEN          |');
+    i:=-1;
+    
     for i:=0 to countChar do
      begin
+        // Inc(i);
         //integer check
+        // if dataToken[i]='''' then
+        //   begin
+        //   z:=i;
+        //     while dataToken[z]<>'''' do
+        //         i:=i+1;
+        //   end;
+
         if  (UpperCase(dataToken[i])='I') and 
             (UpperCase(dataToken[i+1])='N') and 
             (UpperCase(dataToken[i+2])='T') and 
@@ -451,9 +457,8 @@ begin
             begin
                 thensy +=1;
                 writeln('keyword then');
-            end
-        else 
-     
+            end;
+    // i:=i+1;
     end;//endfor
     writeln();
     writeln();
