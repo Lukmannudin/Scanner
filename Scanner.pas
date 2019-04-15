@@ -1,5 +1,14 @@
+
+// Program ini dibuat di visual studio code
+// Di compile menggunakan Free Pascal (FPC)
+// Jika program ini di compile menggunakan dev-pas maka akan ada error di beberapa line code
 program Scanner;
-Uses sysutils;
+Uses sysutils,Crt;
+type
+    rec_token = record
+        token: char;
+        category: string;
+    end;    
 var 
     S : String;
     ch : char;
@@ -9,6 +18,9 @@ var
     sizeOfChar:integer;
     dataToken: array of Char;
     extraIncrement : integer;
+    totalToken:integer;
+    tokens: array of rec_token;
+
     intcon,realcon,charcon,stringt,notsy,plus,minus,times,idiv,rdiv,imod,andsy,orsy,egl,neg,gtr,geg,lss,leg,lparent,rparent,lbrack,rbrack,comma,semicolon,period,colon,becomes,constsy,typesy,varsy,functionsy,proceduresy,arraysy,recordsy,programsy,ident,beginsy,ifsy,casesy,repeatsy,whilesy,forsy,endsy,elsesy,untilsy,ofsy,dosy,tosy,downtosy,thensy,typeint,typechar,typereal : integer;
 
     function countChar():integer;
@@ -64,11 +76,11 @@ begin
             (UpperCase(dataToken[i+2])='T') and 
             (UpperCase(dataToken[i+3])='E') and 
             (UpperCase(dataToken[i+4])='G') and
-            (UpperCase(dataToken[i+5])='E') and  
+            (UpperCase(dataToken[i+5])='E') agitnd  
             (UpperCase(dataToken[i+6])='R') then
             begin
                 intcon+=1;
-                writeln('tipe data integer');
+                write('tipe data integer');
             end
         else
         if  (UpperCase(dataToken[i+0])='R') and 
@@ -444,7 +456,10 @@ begin
         else 
      
     end;//endfor
- 
+    
+    totalToken := intcon + realcon + charcon + stringt + notsy + plus + minus + times + idiv + rdiv + imod + andsy + orsy + egl + neg + gtr + geg + lss + leg + lparent + rparent + lbrack + rbrack + comma + semicolon + period + colon + becomes + constsy + typesy + varsy + functionsy + proceduresy + arraysy + recordsy + programsy + ident + beginsy + ifsy + casesy + repeatsy + whilesy + forsy + endsy + elsesy + untilsy + ofsy + dosy + tosy + downtosy + thensy + typeint + typechar + typechar;
+
+    // writeln('Jumlah Token ',totalToken);
  Writeln;
 
 end.
